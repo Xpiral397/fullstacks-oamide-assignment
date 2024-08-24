@@ -44,9 +44,10 @@ const MenuManager=() => {
   }, [data]);
 
   const handleSelectChange=(event) => {
+    const keys=['delete-node', 'add-new-child', 'add-new-node-number', 'add-new-root', 'delete-node', 'delete-item']
     const nodeId=event.target.value;
     if(keys.includes(nodeId)) {
-
+      handleActionChange(nodeId)
     }
     else {
       const selected=rootNodes?.find(node => node.id===nodeId);
@@ -109,7 +110,7 @@ const MenuManager=() => {
         <option value="add-new-node-number">Swap To Menu </option>
         <option value="add-new-child">Add Child</option>
         <option value="delete-node">Delete Node</option>
-        <option value="delete-node">Delete Item</option>
+        <option value="delete-item">Delete Item</option>
       </select>
 
 
