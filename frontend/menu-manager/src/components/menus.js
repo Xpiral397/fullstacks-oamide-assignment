@@ -94,6 +94,7 @@ const MenuManager=() => {
           </option>
         ))}
 
+        <option value="">-------Action-----</option>
         <option value="add-new-root">New Menu</option>
         <option value="add-new-node-number">Swap To Menu </option>
         <option value="add-new-child">Add Child</option>
