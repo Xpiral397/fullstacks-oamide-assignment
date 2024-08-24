@@ -32,6 +32,7 @@ const MenuManager=() => {
   const {data, addNewRootNode, addNewNodeToRootIfSelectedIsNumber, selectedItem, currentNode, setCurrentNode, addNewChildToSelectedNode, deleteNode}=useData();
 
   const [selectedNode, setSelectedNode]=useState(null);
+  const [lastBeforeSelection, setLastSelection]=useState(null)
   const [rootNodes, setRootNodes]=useState(null)
 
   useEffect(() => {
@@ -44,18 +45,23 @@ const MenuManager=() => {
 
   const handleSelectChange=(event) => {
     const nodeId=event.target.value;
-    const selected=rootNodes?.find(node => node.id===nodeId);
+    if(keys.includes(nodeId)) {
 
-    if(selected) {
-      // Save selected node to localStorage
-      try {
-        localStorage.setItem('currentSelectedNode', JSON.stringify(selected));
-        setCurrentNode(selected);
-      } catch(error) {
-        console.error('Failed to save selected node to localStorage', error);
-      }
     }
-  };
+    else {
+      const selected=rootNodes?.find(node => node.id===nodeId);
+
+      if(selected) {
+        // Save selected node to localStorage
+        try {
+          localStorage.setItem('currentSelectedNode', JSON.stringify(selected));
+          setCurrentNode(selected);
+        } catch(error) {
+          console.error('Failed to save selected node to localStorage', error);
+        }
+      }
+    };
+  }
 
   const handleActionChange=(event) => {
     const action=event.target.value;
