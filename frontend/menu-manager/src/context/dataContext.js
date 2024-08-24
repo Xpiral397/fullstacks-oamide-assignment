@@ -72,7 +72,7 @@ export default function DataProvider({children}) {
 
         try {
             // const createdNode=await createMenuNodes([newRootNode]);
-            setData(prevData => [...prevData, ...createdNode]);
+            setData(prevData => [...prevData, createdNode]);
         } catch(error) {
             console.error('Error adding new root node:', error);
         }
