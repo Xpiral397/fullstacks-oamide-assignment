@@ -83,7 +83,7 @@ export default function Editor() {
 
     return (
         <div className="z-30 w-full flex">
-            <div className="max-w-xl mx-auto w-full -mt-60 md:mt-0 space-x-1 p-1 md:p-5 rounded">
+            <div className="max-w-xl mx-auto w-full mt-0 space-x-1 p-1 md:p-5 rounded">
                 <div className="mb-4">
                     <label className="block text-sm font-[400] text-gray-500">Menu ID</label>
                     <input

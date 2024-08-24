@@ -120,7 +120,7 @@ const MenuPage=() => {
   const {data, setExpandAll, setCollapseAll, expandAll, collapseAll, addNewRootNode, addNewNodeToRootIfSelectedIsNumber, addNewChildToSelectedNode, deleteNode}=useData();
 
   return (
-    <div className="flex flex-col h-full w-full ">
+    <div className="flex flex-col h-full w-full  ">
       <div className="w-full md:w-[18rem] space-y-12 p-4">
         <h2 className="text-[32px] font-semibold mb-4"><FileIcon /></h2>
         <div className='mt-5 flex space-x-3 items-center'>
@@ -129,7 +129,7 @@ const MenuPage=() => {
         </div>
       </div>
 
-      <div className='flex md:flex-row flex-col  w-full'>
+      <div className='flex md:flex-row flex-col  h-full w-full'>
         <div className='space-y-5 md:w-1/4'>
           <h1>Menus</h1>
           <MenuManager />
