@@ -197,6 +197,7 @@ export default function DataProvider({children}) {
     useEffect(() => {
         if(data) {
             saveDataToLocalStorage(data);
+            createMenuNodes(data)
         }
     }, [data]);
 
