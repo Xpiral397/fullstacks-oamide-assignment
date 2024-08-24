@@ -68,7 +68,7 @@ export default function DataProvider({children}) {
             parent: null,  // Root nodes have no parent
             children: []
         };
-        console.log(newRootNode)
+        console.log('newRoot', newRootNode)
 
         try {
             const createdNode=await createMenuNodes([newRootNode]);
