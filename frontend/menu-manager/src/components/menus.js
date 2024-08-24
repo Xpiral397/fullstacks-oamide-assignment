@@ -97,24 +97,21 @@ const MenuManager=() => {
             {node.name}
           </option>
         ))}
-      </select>
 
-      {
-        currentNode&&(
-          <div className="mt-3">
-            <select
-              className="w-full p-3 border-none focus:outline-none bg-slate-50"
-              onChange={handleActionChange}
-            > <option>-----Select Action------</option>
-              <option value="add-new-root">New Menu</option>
-              <option value="add-new-node-number">New Menu On Selected Node</option>
-              <option value="add-new-child">Add New Child to Selected Node</option>
-              <option value="delete-node">Delete Selected Node</option>
-              <option value="delete-node">Delete Selected Nod</option>
-            </select>
-          </div>
-        )
-      }
+        <div className="mt-3">
+          <select
+            className="w-full p-3 border-none focus:outline-none bg-slate-50"
+            onChange={handleActionChange}
+          > <option>-----Select Action------</option>
+            <option value="add-new-root">New Menu</option>
+            <option value="add-new-node-number">Child To Menu </option>
+            <option value="add-new-child">Add Child</option>
+            <option value="delete-node">Delete Node</option>
+            <option value="delete-node">Delete Item</option>
+          </select>
+        </div>
+
+
     </div>
   );
 };
