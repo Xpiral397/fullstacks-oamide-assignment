@@ -42,7 +42,7 @@ const MenuManager=() => {
     else {
       const selected=rootNodes?.find(node => node.id===nodeId);
 
-      if(selected) {
+      if(selected&&nodeId) {
         // Save selected node to localStorage
         try {
           localStorage.setItem('currentSelectedNode', JSON.stringify(selected));
