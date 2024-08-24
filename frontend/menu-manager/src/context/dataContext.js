@@ -2,6 +2,13 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import {createMenuNodes, getMenuNodes} from '../api/routes';
 
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r=(crypto.getRandomValues(new Uint8Array(1))[0]%16)|0;
+        const v=c==='x'? r:(r&0x3)|0x8;
+        return v.toString(16);
+    });
+}
 // Create the context
 const DataContext=createContext();
 
@@ -73,7 +80,8 @@ export default function DataProvider({children}) {
         if(!selectedItem) return;
 
         const newNode={
-            name: 'New Node',
+            id: generateUUID(),
+            name: 'Click to edit',
             depth: selectedItem.depth+1,
             parent: selectedItem.id,
             children: []
@@ -96,7 +104,8 @@ export default function DataProvider({children}) {
         if(!selectedItem) return;
 
         const newChildNode={
-            name: 'New Child Node',
+            id: generateUUID(),
+            name: 'DoubleClick to edit',
             depth: selectedItem.depth+1,
             parent: selectedItem.id,
             children: []
