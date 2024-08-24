@@ -100,7 +100,7 @@ const ListItem=({item, onUpdate}) => {
         catch(e) {
             console.log(expandAll)
         }
-    }, [expandAll, show, collapseAll]);
+    }, [expandAll, show, collapseAll, data]);
 
 
 
