@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/fullstacks-oamide-assignment/static/css/main.82c880da.css",
+    "main.js": "/fullstacks-oamide-assignment/static/js/main.f66cbc02.js",
+    "static/js/453.70412401.chunk.js": "/fullstacks-oamide-assignment/static/js/453.70412401.chunk.js",
+    "index.html": "/fullstacks-oamide-assignment/index.html",
+    "main.82c880da.css.map": "/fullstacks-oamide-assignment/static/css/main.82c880da.css.map",
+    "main.f66cbc02.js.map": "/fullstacks-oamide-assignment/static/js/main.f66cbc02.js.map",
+    "453.70412401.chunk.js.map": "/fullstacks-oamide-assignment/static/js/453.70412401.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.82c880da.css",
+    "static/js/main.f66cbc02.js"
+  ]
+}
