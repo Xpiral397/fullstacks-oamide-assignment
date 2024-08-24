@@ -71,8 +71,9 @@ export default function DataProvider({children}) {
         console.log('newRoot', newRootNode)
 
         try {
-            // const createdNode=await createMenuNodes([newRootNode]);
-            setData(prevData => [...prevData, createdNode]);
+            const createdNode=await createMenuNodes([...prevData, ...createdNode]);
+            setData(prevData => [...createdNode]);
+            setCurrentNode(createdNode[createdNode.length-1]??currentNode)
         } catch(error) {
             console.error('Error adding new root node:', error);
         }
@@ -207,13 +208,10 @@ export default function DataProvider({children}) {
         initializeDataAndNode();
     }, []);
 
-    useEffect(async () => {
+    useEffect(() => {
         if(data) {
-
+            saveDataToLocalStorage(data);
             createMenuNodes(data)
-            const res=await getMenuNodes()
-            setData(res)
-            saveDataToLocalStorage(res);
         }
     }, [data]);
 
