@@ -211,7 +211,7 @@ export default function DataProvider({children}) {
         if(data) {
 
             createMenuNodes(data)
-            new res=await getMenuNodes()
+            const res=await getMenuNodes()
             setData(res)
             saveDataToLocalStorage(res);
         }
