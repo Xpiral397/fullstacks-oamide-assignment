@@ -140,7 +140,7 @@ const MenuPage=() => {
             }} className={`${expandAll? "bg-[#1D2939] text-white":"bg-white text-slate-900 border"}  px-5  py-[4px] rounded-[23px] border-slate-300 w-full `}> Expand All </button>
             <button onClick={() => {localStorage.removeItem('data'); setCollapseAll(true); setExpandAll(false)}} className={`${!expandAll? "bg-[#1D2939] text-white":"bg-white text-slate-900 border"}  px-5  py-1 rounded-[23px] border-slate-300 w-full`}> Collapse All </button>
           </div>
-          <div className='z-10 overflow-x-hidden oveflow-y-scroll hide max-w-[100vh] w-full md:w-[100vh] max-h-[50vh] h-[50vh]'>
+          <div className='z-10 overflow-x-hidden oveflow-y-scroll hide h-full md:max-w-[100vh] w-full md:w-[100vh] md:max-h-[50vh] md:h-[50vh]'>
             <ListItem expandAll={expandAll} collapseAll={collapseAll} setCollapseAll={setCollapseAll} setExpandAll={setExpandAll} />
           </div>
         </div>
