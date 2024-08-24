@@ -11,6 +11,7 @@ export default function Editor() {
     useEffect(() => {
         if(selectedItem) {
             newDataRef.current.value=selectedItem.name;
+            console.log(selectedItem.parent)
             newParentNameRef.current.value=findNameById(data, selectedItem.parent);
         }
     }, [selectedItem])
