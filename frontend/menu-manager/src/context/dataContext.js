@@ -212,7 +212,7 @@ export default function DataProvider({children}) {
         if(data) {
             const _data=createMenuNodes(data)
             saveDataToLocalStorage(_data);
-            setData(_data)
+            // 
         }
     }, [data]);
 
