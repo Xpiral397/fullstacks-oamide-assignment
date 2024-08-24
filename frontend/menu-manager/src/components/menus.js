@@ -44,6 +44,7 @@ const MenuManager=() => {
 
       if(selected&&nodeId) {
         // Save selected node to localStorage
+
         try {
           localStorage.setItem('currentSelectedNode', JSON.stringify(selected));
           setCurrentNode(selected);
