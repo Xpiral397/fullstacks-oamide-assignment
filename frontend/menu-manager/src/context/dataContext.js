@@ -210,8 +210,9 @@ export default function DataProvider({children}) {
 
     useEffect(() => {
         if(data) {
-            saveDataToLocalStorage(data);
-            createMenuNodes(data)
+            const _data=createMenuNodes(data)
+            saveDataToLocalStorage(_data);
+            setData(_data)
         }
     }, [data]);
 
