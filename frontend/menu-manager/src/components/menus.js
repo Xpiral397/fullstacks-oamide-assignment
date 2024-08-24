@@ -47,6 +47,7 @@ const MenuManager=() => {
     const keys=['delete-node', 'add-new-child', 'add-new-node-number', 'add-new-root', 'delete-node', 'delete-item']
     const nodeId=event.target.value;
     if(keys.includes(nodeId)) {
+      console.log('here')
       handleActionChange(nodeId)
     }
     else {
