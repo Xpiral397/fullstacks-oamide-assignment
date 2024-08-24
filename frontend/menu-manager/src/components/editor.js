@@ -36,12 +36,17 @@ export default function Editor() {
     };
 
     // Function to update item by ID with new name
-    const updateNameById=(data, id, newName) => {
+    const updateNameById=(data, id, newName, type) => {
         const updateItems=(items) => {
             return items.map((item) => {
                 if(item.id===id) {
                     if(item.id===selectedItem) {
-                        setSelectedItem({...selectedItem, name: newName})
+                        if(type=='parent') {
+                            setSelectedItem({...selectedItem, parent: newName})
+                        }
+                        else {
+                            setSelectedItem({...selectedItem, name: newName})
+                        }
                     }
                     return {
                         ...item,
@@ -70,12 +75,12 @@ export default function Editor() {
 
             // Update selected item's name if newData is provided
             if(newData) {
-                updatedData=updateNameById(updatedData, selectedItem.id, newData);
+                updatedData=updateNameById(updatedData, selectedItem.id, newData, 'name');
             }
 
             // Update parent's name if parent ID exists and newParentName is provided
             if(selectedItem.parent&&newParentName) {
-                updatedData=updateNameById(updatedData, selectedItem.parent, newParentName);
+                updatedData=updateNameById(updatedData, selectedItem.parent, newParentName, 'parent');
             }
 
             setData(updatedData); // Update data with both changes
