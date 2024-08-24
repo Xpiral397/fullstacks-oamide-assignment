@@ -87,7 +87,7 @@ export default function DataProvider({children}) {
             children: []
         };
 
-        if(isNaN(selectedItem.id)) {
+        if(!selectedItem.id) {
             return;
         }
 
