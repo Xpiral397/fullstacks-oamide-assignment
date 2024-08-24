@@ -10,7 +10,7 @@ function App() {
   return (
     <DataProvider>
       <Router>
-        <div className="flex h-screen bg-white  p-5">
+        <div className="flex h-full md:h-screen bg-white  p-5">
           <Sidebar />
           <div className="flex-1 p-4">
             <Routes>
