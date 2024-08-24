@@ -14,7 +14,7 @@ export default function Editor() {
             console.log(selectedItem.parent)
             newParentNameRef.current.value=findNameById(data, selectedItem.parent);
         }
-    }, [selectedItem])
+    }, [selectedItem, data])
 
     // Function to find item by ID and return its name
     const findNameById=(data, id) => {

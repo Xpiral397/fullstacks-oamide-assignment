@@ -104,6 +104,7 @@ export default function DataProvider({children}) {
     const addNewChildToSelectedNode=async () => {
         if(!selectedItem) return;
 
+        console.log('proud', selectedItem)
         const newChildNode={
             id: generateUUID(),
             name: 'DoubleClick to edit',
