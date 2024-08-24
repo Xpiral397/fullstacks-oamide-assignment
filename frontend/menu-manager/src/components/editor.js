@@ -40,7 +40,7 @@ export default function Editor() {
         const updateItems=(items) => {
             return items.map((item) => {
                 if(item.id===id) {
-                    if(item.id===selectedItem) {
+                    if(item.id===selectedItem?.id) {
                         if(type=='parent') {
                             setSelectedItem({...selectedItem, parent: newName})
                         }
