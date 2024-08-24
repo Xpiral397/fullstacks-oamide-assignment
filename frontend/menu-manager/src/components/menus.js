@@ -65,9 +65,7 @@ const MenuManager=() => {
     };
   }
 
-  const handleActionChange=(event) => {
-    const action=event.target.value;
-
+  const handleActionChange=(action) => {
     switch(action) {
       case 'add-new-root':
         addNewRootNode();
