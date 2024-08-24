@@ -73,7 +73,7 @@ export default function DataProvider({children}) {
         try {
             const createdNode=await createMenuNodes([...data, newRootNode]);
             setData(prevData => [...createdNode]);
-            setCurrentNode(createdNode[createdNode.length-1]??currentNode)
+            setSelectedItem(createdNode[createdNode.length-1]??selectedItem)
         } catch(error) {
             console.error('Error adding new root node:', error);
         }
