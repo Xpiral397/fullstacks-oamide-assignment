@@ -62,6 +62,7 @@ export default function DataProvider({children}) {
 
     const addNewRootNode=async () => {
         const newRootNode={
+            id: generateUUID(),
             name: 'New Root Node',
             depth: 0,  // Root node has depth 0
             parent: null,  // Root nodes have no parent
