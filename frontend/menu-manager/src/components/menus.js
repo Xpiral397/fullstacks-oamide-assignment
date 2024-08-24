@@ -82,6 +82,7 @@ const MenuManager=() => {
       default:
         console.log('No action selected');
     }
+    setCurrentNode(null);
   };
 
   return (
@@ -98,10 +99,8 @@ const MenuManager=() => {
           </option>
         ))}
 
-
-        <option>-----Select Action------</option>
         <option value="add-new-root">New Menu</option>
-        <option value="add-new-node-number">Child To Menu </option>
+        <option value="add-new-node-number">Swap To Menu </option>
         <option value="add-new-child">Add Child</option>
         <option value="delete-node">Delete Node</option>
         <option value="delete-node">Delete Item</option>
