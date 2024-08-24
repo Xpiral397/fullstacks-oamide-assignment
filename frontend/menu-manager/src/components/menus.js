@@ -17,17 +17,6 @@ const ListItem=({expandAll, collapseAll, setCollapseAll, setExpandAll}) => {
 
 
 
-
-
-
-
-
-
-
-
-// import React, {useEffect, useState} from 'react';
-// import {useData} from '../context/dataContext'; // Adjust the import path as necessary
-
 const MenuManager=() => {
   const {data, addNewRootNode, addNewNodeToRootIfSelectedIsNumber, selectedItem, currentNode, setCurrentNode, addNewChildToSelectedNode, deleteNode}=useData();
 
@@ -78,11 +67,11 @@ const MenuManager=() => {
         break;
       case 'delete-node':
         if(selectedNode) {
-          deleteNode(selectedNode.id); // Ensure deleteNode function accepts node ID
+          deleteNode(selectedNode.id);
         }
       case 'delete-item':
         if(selectedItem) {
-          deleteNode(selectedItem.id); // Ensure deleteNode function accepts node ID
+          deleteNode(selectedItem.id);
         }
         break;
       default:
