@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ :root {
+    --depth-0-line: 10px;
+    --depth-1-line: 20px;
+    --depth-2-line: 25px;
+    --depth-3-line: 30px;
+    --depth-4-line: 35px;
+    --depth-5-line: 40px;
+    --depth-6-line: 45px;
+    --depth-7-line: 50px;
+    --depth-8-line: 55px;
+    --depth-9-line: 60px;
+    --depth-10-line: 65px;
+    /* Add more as needed */
+}
+
+
+/* General list styling */
+
+.lst ul {
+    padding-left: 1.5rem;
+    list-style: none;
+    line-height: 2em;
+}
+
+.lst summary {
+    cursor: pointer;
+}
+
+.marker::-webkit-details-marker {
+    display: none;
+}
+
+summary::-webkit-details-marker {
+    display: none !important;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::marker {
+    display: none !important;
+}
+
+summary::-ms-expand {
+    display: none !important;
+}
+
+.lst ul li {
+    padding-left: var(--depth-line-left);
+    padding-top: 30px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.lst ul li::before {
+    position: absolute;
+    left: -10px;
+    top: 0px;
+    width: var(--depth-line-left);
+    height: 3em;
+    border-left: 1px solid #98A2B3;
+    border-bottom: 3px solid #98A2B3;
+    content: '';
+}
+
+.lst ul li::after {
+    position: absolute;
+    left: -10px;
+    bottom: 0px;
+    width: var(--depth-line-left);
+    height: 100%;
+    border-left: 1px solid #98A2B3;
+    content: '';
+}
+
+
+/* Conditional styling for specific list items */
+
+.depth-2::after {
+    /* Custom style for depth-2 items, for example */
+    border-left: 2px solid red;
+    /* Example: change color for visibility */
+}
+
+.depth-3::after {
+    /* Custom style for depth-3 items */
+    border-left: 2px solid green;
+    /* Example: change color for visibility */
+}
+
+
+/* Hide the marker for the last item in certain lists */
+
+.lst ul li:last-child::after {
+    display: none;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.hide::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
