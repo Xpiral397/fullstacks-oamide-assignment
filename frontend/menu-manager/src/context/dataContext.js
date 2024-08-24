@@ -68,6 +68,7 @@ export default function DataProvider({children}) {
             parent: null,  // Root nodes have no parent
             children: []
         };
+        console.log(newRootNode)
 
         try {
             const createdNode=await createMenuNodes([newRootNode]);
@@ -91,6 +92,7 @@ export default function DataProvider({children}) {
         if(!selectedItem.id) {
             return;
         }
+
 
         const updatedData=[...data, newNode];
         try {
