@@ -36,7 +36,6 @@ const MenuManager=() => {
     const keys=['delete-node', 'add-new-child', 'add-new-node-number', 'add-new-root', 'delete-node', 'delete-item']
     const nodeId=event.target.value;
     if(keys.includes(nodeId)) {
-      console.log('here')
       handleActionChange(nodeId)
     }
     else {
@@ -97,10 +96,9 @@ const MenuManager=() => {
 
         <option value="">-------Action-----</option>
         <option value="add-new-root">New Menu</option>
-        <option value="add-new-node-number">Swap To Menu </option>
+        {/* <option value="add-new-node-number">Swap To Menu </option> */}
         <option value="add-new-child">Add Child</option>
-        <option value="delete-node">Delete Node</option>
-        <option value="delete-item">Delete Item</option>
+        <option value="delete-node">Delete Node/Item</option>
       </select>
 
 

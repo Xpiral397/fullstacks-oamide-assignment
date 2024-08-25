@@ -87,7 +87,6 @@ const calculateDepthAndLength=(item, depth=0) => {
 
 const ListItem=({item, onUpdate}) => {
     const {setSelectedItem, setData, data, collapseAll, expandAll, setCollapseAll, setExpandAll}=useData()
-    console.log("My data", item)
     const [timeoutId, setTimeoutId]=useState(null);
     const [open, setOpen]=useState({})
     const [show, setshow]=useState('')
@@ -98,17 +97,14 @@ const ListItem=({item, onUpdate}) => {
             setOpen(data)
         }
         catch(e) {
-            console.log(expandAll)
         }
     }, [expandAll, show, collapseAll]);
 
 
 
     // Dynamically set CSS variable for depth-based styling
-
-    // Calculate depth and line length
+    // Calculate depth of he connecting line 
     const {depth, lineLength}=calculateDepthAndLength(item);
-    console.log(depth)
 
     // Set CSS variable dynamically
     const depthLineLeft=`var(--depth-${depth}-line)`;
@@ -131,7 +127,6 @@ const ListItem=({item, onUpdate}) => {
 
             });
 
-            console.log('done', {...open, [id]: isOpen}, id, detailsElement.open, open);
         }
     };
 
@@ -150,7 +145,7 @@ const ListItem=({item, onUpdate}) => {
         <li className={`lst depth-${item.depth}`} style={{'--depth-line-left': depthLineLeft}}>
             <details className='lst' id={item.id} open={expandAll? true:collapseAll? false:(open?.[item.id]??false)} onToggle={() => setOpenUpdate(item.id)}
             >
-                <summary className='z-10 relative flex space-x-5  w-[2rem] items-center' onClick={() => {setSelectedItem(item)}}>
+                <summary className='z-10 relative flex space-x-5  w-[9rem] items-center' onClick={() => {setSelectedItem(item)}}>
 
                     <div className='items-center flex space-x-3 relative'>
                         <svg className={`${item.children.length? 'block':'hidden'} ${open?.[item.id]? 'rotate-0':'rotate-90'} transition-transform duration-300`} width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +159,7 @@ const ListItem=({item, onUpdate}) => {
 
                     </div>
                 </summary>
-                {item?.children?.length? <div className={'opacity-0 hover:opacity-100 absolute -mt-[1.8rem] mx-7 w-[8em]  flex justify-end z-30'} >
+                {item?.children?.length? <div className={'opacity-0 hover:opacity-100 absolute -mt-[1.8rem] mx-7 w-[8em]  flex justify-end z-50'} >
                     <div onClick={() => {
                         const addNewChildToItem=(selectedItem) => {
                             if(selectedItem) {
@@ -198,7 +193,6 @@ const ListItem=({item, onUpdate}) => {
 
                                 // Set the updated data
                                 setData(updatedData);
-                                console.log(updatedData, 'Updated Data');
                             }
                         };
 
@@ -225,8 +219,6 @@ const ListItem=({item, onUpdate}) => {
 };
 
 const MenuList=({data, expandAll, onUpdate}) => {
-    // const maxDepth=getMaxDepth({children: data});
-    console.log(data, 'Lop')
     return (
         <div className='relative lst'>
             <ul className='lst'>
@@ -243,11 +235,7 @@ const MenuList=({data, expandAll, onUpdate}) => {
 // import {useData} from '../context/dataContext'; // Adjust the path according to your setup
 
 const App=({expandAll, collapseAll, setCollapseAll, setExpandAll}) => {
-    console.log(expandAll, 'kop')
     const {data, setData}=useData();
-
-    console.log('Data has chnage', data)
-
     const updateMenu=({id, name, depth, parent}) => {
         setData(prevMenus => {
             const updateMenuRecursive=(menus) => {

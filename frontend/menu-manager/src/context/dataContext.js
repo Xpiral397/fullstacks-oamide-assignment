@@ -172,6 +172,19 @@ export default function DataProvider({children}) {
         // Fetch initial data from the API
         try {
             const fetchedData=await getMenuNodes();
+
+
+            //Resettting the head of the node the UUID of the head would have been distorted 
+
+            for(let heads in fetchedData) {
+                // trasversing on the edge nodes
+                if(fetchedData[heads]?.children?.length) {
+                    fetchedData[heads].children.forEach(child => {
+                        // connecting the paent to the child not at preliminary(parant of a Node list) level
+                        child.parent=fetchedData[heads].id;
+                    });
+                }
+            }
             setData(fetchedData);
             saveDataToLocalStorage(fetchedData);
 
