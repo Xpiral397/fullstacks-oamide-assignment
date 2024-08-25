@@ -49,7 +49,7 @@ const Editor=({text, onUpdate, item}) => {
                     onBlur={handleBlur}
                     onKeyDown={handleKeyDown}
                     autoFocus
-                    className="bg-red-200 z-30 text-white  rounded-sm p-1 focus:outline-none"
+                    className="bg-red-200 z-30 text-white text-sm  rounded-sm p-1 focus:outline-none"
                 />
             ):(
                 <span onDoubleClick={handleDoubleClick} className="cursor-pointer">
@@ -87,7 +87,7 @@ const calculateDepthAndLength=(item, depth=0) => {
 
 const ListItem=({item, onUpdate}) => {
     const {setSelectedItem, setData, data, collapseAll, expandAll, setCollapseAll, setExpandAll}=useData()
-
+    console.log("My data", item)
     const [timeoutId, setTimeoutId]=useState(null);
     const [open, setOpen]=useState({})
     const [show, setshow]=useState('')
@@ -100,7 +100,7 @@ const ListItem=({item, onUpdate}) => {
         catch(e) {
             console.log(expandAll)
         }
-    }, [expandAll, show, collapseAll, data]);
+    }, [expandAll, show, collapseAll]);
 
 
 
@@ -158,7 +158,7 @@ const ListItem=({item, onUpdate}) => {
                             <path d="M9.5 11.25L13 14.75L16.5 11.25" stroke="#101828" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {
-                            !item?.children?.length? <Editor text={item.name} onUpdate={onUpdate} item={item} />:<div className='w-full h-full' onMouseEnter={() => handleMouseEnter(item.id)} onClick={() => {setSelectedItem(item)}}>{item.name}</div>
+                            !item?.children?.length? <Editor text={item.name} onUpdate={onUpdate} item={item} />:<div className='w-full h-full text-sm' onMouseEnter={() => handleMouseEnter(item.id)} onClick={() => {setSelectedItem(item)}}>{item.name}</div>
                         }
 
 
@@ -246,7 +246,7 @@ const App=({expandAll, collapseAll, setCollapseAll, setExpandAll}) => {
     console.log(expandAll, 'kop')
     const {data, setData}=useData();
 
-
+    console.log('Data has chnage', data)
 
     const updateMenu=({id, name, depth, parent}) => {
         setData(prevMenus => {

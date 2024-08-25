@@ -61,7 +61,7 @@ summary::-ms-expand {
 
 .lst ul li {
     padding-left: var(--depth-line-left);
-    padding-top: 30px;
+    padding-top: 20px;
     white-space: nowrap;
     position: relative;
 }
@@ -71,7 +71,7 @@ summary::-ms-expand {
     left: -10px;
     top: 0px;
     width: var(--depth-line-left);
-    height: 3em;
+    height: 2em;
     border-left: 1px solid #98A2B3;
     border-bottom: 3px solid #98A2B3;
     content: '';

@@ -25,7 +25,7 @@ export default function DataProvider({children}) {
         try {
             localStorage.setItem('menuData', JSON.stringify(data));
         } catch(error) {
-            console.error('Failed to save data to localStorage', error);
+
         }
     };
 
@@ -35,7 +35,7 @@ export default function DataProvider({children}) {
             const savedData=localStorage.getItem('menuData');
             return savedData? JSON.parse(savedData):[];
         } catch(error) {
-            console.error('Failed to load data from localStorage', error);
+
             return [];
         }
     };
@@ -68,8 +68,6 @@ export default function DataProvider({children}) {
             parent: null,  // Root nodes have no parent
             children: []
         };
-        console.log('newRoot', newRootNode)
-
         try {
             const createdNode=await createMenuNodes([...data, newRootNode]);
             setData(prevData => [...createdNode]);
@@ -107,7 +105,6 @@ export default function DataProvider({children}) {
     const addNewChildToSelectedNode=async () => {
         if(!selectedItem) return;
 
-        console.log('proud', selectedItem)
         const newChildNode={
             id: generateUUID(),
             name: 'DoubleClick to edit',
@@ -133,8 +130,10 @@ export default function DataProvider({children}) {
 
         const updatedData=addChild(data);
         try {
-            const createdNodes=await createMenuNodes(updatedData);
-            setData(createdNodes);
+            createMenuNodes(updatedData).then(async () => {
+                const createdNodes=await getMenuNodes();
+                setData(createdNodes);
+            })
         } catch(error) {
             console.error('Error adding new child node:', error);
         }
@@ -169,51 +168,36 @@ export default function DataProvider({children}) {
 
     // Function to initialize data and current node
     const initializeDataAndNode=async () => {
-        const initialData=loadDataFromLocalStorage();
-        if(initialData.length>0) {
-            setData(initialData);
-            const currentNode=loadCurrentNodeFromLocalStorage();
-            if(currentNode) {
-                setSelectedItem(currentNode);
-                setCurrentNode(currentNode);
-            } else {
-                // Select the first root node if no current node is saved
-                const firstRootNode=initialData.find(node => node.depth===0);
-                if(firstRootNode) {
-                    setSelectedItem(firstRootNode);
-                    setCurrentNode(firstRootNode);
-                    saveCurrentNodeToLocalStorage(firstRootNode);
-                }
-            }
-        } else {
-            // Fetch initial data from the API
-            try {
-                const fetchedData=await getMenuNodes();
-                setData(fetchedData);
-                saveDataToLocalStorage(fetchedData);
 
-                // Set the first root node as the selected item
-                const firstRootNode=fetchedData.find(node => node.depth===0);
-                if(firstRootNode) {
-                    setSelectedItem(firstRootNode);
-                    saveCurrentNodeToLocalStorage(firstRootNode);
-                }
-            } catch(error) {
-                console.error('Error fetching initial data:', error);
+        // Fetch initial data from the API
+        try {
+            const fetchedData=await getMenuNodes();
+            setData(fetchedData);
+            saveDataToLocalStorage(fetchedData);
+
+            // Set the first root node as the selected item
+            const firstRootNode=fetchedData.find(node => node.depth===0);
+            if(firstRootNode) {
+                setSelectedItem(firstRootNode);
+                saveCurrentNodeToLocalStorage(firstRootNode);
             }
+        } catch(error) {
+            console.error('Error fetching initial data:', error);
         }
+
     };
 
     useEffect(() => {
         initializeDataAndNode();
     }, []);
 
-    useEffect(async () => {
-        if(data) {
-            createMenuNodes(data)
-            const _data=getMenuNodes()
-            saveDataToLocalStorage(_data);
-            // 
+    useEffect(() => {
+        if(data&&data.length) {
+            // if(JSON.stringify(data)!==(localStorage.getItem('menuData')??'')) {
+            createMenuNodes(data);
+            saveDataToLocalStorage(data);
+
+            // }
         }
     }, [data]);
 

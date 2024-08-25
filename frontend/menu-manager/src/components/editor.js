@@ -1,17 +1,29 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useData} from '../context/dataContext'; // Adjust the path according to your setup
 
 export default function Editor() {
     const {setData, data, selectedItem, setSelectedItem}=useData();
 
     // Refs to access input values
-    const newDataRef=useRef(null);
+    const [showTooltip, setShowTooltip]=useState(false);
+
+    // Ref for the input element (if needed for future manipulation)
+    const newDataRef=useRef();
+
+    // 2. Function to handle input click and show tooltip
+    const handleClick=() => {
+        setShowTooltip(true); // Show the tooltip
+
+        // 3. Optionally hide the tooltip after a delay (e.g., 3 seconds)
+        setTimeout(() => {
+            setShowTooltip(false); // Hide the tooltip after a delay
+        }, 3000);
+    };
     const newParentNameRef=useRef(null);
 
     useEffect(() => {
         if(selectedItem) {
             newDataRef.current.value=selectedItem.name;
-            console.log(selectedItem.parent)
             newParentNameRef.current.value=findNameById(data, selectedItem.parent);
         }
     }, [selectedItem, data])
@@ -65,28 +77,70 @@ export default function Editor() {
         return updateItems(data);
     };
 
+
+
+
+
+    const updateMenu=(id, name) => {
+        setData(prevMenus => {
+            const updateMenuRecursive=(menus) => {
+                return menus
+                    .map(menu => {
+                        if(menu.id!==id) {
+
+                            if(!name) {
+                                // If name is empty, remove the current node
+                                return null;
+                            }
+                            // Update the menu item with new values
+
+                            return {
+                                ...menu,
+                                name: name,
+
+                            };
+                        }
+
+                        if(menu.children&&menu.children.length>0) {
+                            // Recursively update the children if any
+                            const updatedChildren=updateMenuRecursive(menu.children);
+                            // Remove empty children arrays
+                            if(updatedChildren.length===0) {
+                                return null;
+                            }
+                            // Return the menu with updated children
+                            return {...menu, children: updatedChildren};
+                        }
+
+                        return menu;
+                    })
+                    .filter(menu => menu!==null); // Remove any null values
+            };
+
+            const updatedMenus=updateMenuRecursive(prevMenus);
+            return updatedMenus;
+        });
+    };
+
+
+
+
     // Handle saving updates for selected item and parent
     const handleSave=() => {
         const newData=newDataRef.current?.value.trim();
         const newParentName=newParentNameRef.current?.value.trim();
-
         if(selectedItem) {
             let updatedData=data;
 
             // Update selected item's name if newData is provided
             if(newData) {
-                updatedData=updateNameById(updatedData, selectedItem.id, newData, 'name');
-            }
+                updateMenu(selectedItem.id, newData);
 
+            }
             // Update parent's name if parent ID exists and newParentName is provided
             if(selectedItem.parent&&newParentName) {
-                updatedData=updateNameById(updatedData, selectedItem.parent, newParentName, 'parent');
+                setData(updateNameById(data, selectedItem.parent, newParentName, 'parent'))
             }
-
-            setData(updatedData); // Update data with both changes
-
-            // // Reset input values
-
         }
     };
 
@@ -127,13 +181,25 @@ export default function Editor() {
 
                 <div className="mb-4">
                     <label className="block text-sm font-[400] text-gray-500">Selected Item</label>
-                    <input
-                        type="text"
-                        className="w-1/2 p-3 border-none outline-none bg-[#F9FAFB] rounded-[16px]"
-                        ref={newDataRef}
-                        defaulValue={selectedItem?.name||''}
-                        placeholder={selectedItem? selectedItem.name:'None selected'}
-                    />
+                    <div className="relative">
+                        {/* 4. Input field with onClick handler */}
+                        <input
+                            type="text"
+                            className="w-1/2 p-3 border-none outline-none bg-[#F9FAFB] rounded-[16px]"
+                            ref={newDataRef}
+                            defaultValue={selectedItem?.item}
+                            placeholder={selectedItem? selectedItem.name:'None selected'}
+                            readOnly={true} // Disable editing
+                            onClick={handleClick} // Show tooltip on click
+                        />
+
+                        {/* 5. Tooltip displayed conditionally */}
+                        {showTooltip&&(
+                            <div className="absolute top-full mt-2 left-0 bg-gray-700 text-white p-2 rounded-lg shadow-lg">
+                                You can't edit this. Can only edit parent child here .Please double-click on the sidebar to edit .
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className="flex w-1/2 justify-center">
