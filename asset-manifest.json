@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/fullstacks-oamide-assignment/static/css/main.9688f735.css",
-    "main.js": "/fullstacks-oamide-assignment/static/js/main.f61b8757.js",
+    "main.css": "/fullstacks-oamide-assignment/static/css/main.1957a588.css",
+    "main.js": "/fullstacks-oamide-assignment/static/js/main.5be08d4e.js",
     "static/js/453.70412401.chunk.js": "/fullstacks-oamide-assignment/static/js/453.70412401.chunk.js",
     "index.html": "/fullstacks-oamide-assignment/index.html",
-    "main.9688f735.css.map": "/fullstacks-oamide-assignment/static/css/main.9688f735.css.map",
-    "main.f61b8757.js.map": "/fullstacks-oamide-assignment/static/js/main.f61b8757.js.map",
+    "main.1957a588.css.map": "/fullstacks-oamide-assignment/static/css/main.1957a588.css.map",
+    "main.5be08d4e.js.map": "/fullstacks-oamide-assignment/static/js/main.5be08d4e.js.map",
     "453.70412401.chunk.js.map": "/fullstacks-oamide-assignment/static/js/453.70412401.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9688f735.css",
-    "static/js/main.f61b8757.js"
+    "static/css/main.1957a588.css",
+    "static/js/main.5be08d4e.js"
   ]
 }
